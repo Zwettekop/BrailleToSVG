@@ -1,4 +1,4 @@
-let invoer = `a;1
+/*let invoer = `a;1
 b;12
 c;14
 d;145
@@ -36,7 +36,6 @@ number indicator;3456
 9;24
 0;245
 ,;2
-";";23
 :;25
 .;256
 ?;236
@@ -45,4 +44,66 @@ number indicator;3456
 );5 345
 /;456 34
 \;456 16
--;36`
+-;36`;*/
+
+
+let invoer = `a;⠁
+b;⠃
+c;⠉
+d;⠙
+e;⠑
+f;⠋
+g;⠛
+h;⠓
+i;⠊
+j;⠚
+k;⠅
+l;⠇
+m;⠍
+n;⠝
+o;⠕
+p;⠏
+q;⠟
+r;⠗
+s;⠎
+t;⠞
+u;⠥
+v;⠧
+w;⠺
+x;⠭
+y;⠽
+z;⠵
+number indicator;⠼
+1;⠁
+2;⠃
+3;⠉
+4;⠙
+5;⠑
+6;⠋
+7;⠛
+8;⠓
+9;⠊
+0;⠚
+,;⠂
+:;⠒
+.;⠲
+?;⠦
+!;⠖
+(;⠐⠣
+);⠐⠜
+/;⠸⠌
+\;⠸⠡
+-;⠤`
+
+/*
+arr = invoer.split("\n");
+dict = {};
+for (let zin of arr) {
+    woorden = zin.split(";");
+    //console.log(woorden);
+    dict[woorden[0]] = woorden[1];
+    console.log(`"${woorden[0]}":"${woorden[1]}",`);
+}
+
+*/
+//console.log(dict); 

@@ -12,6 +12,7 @@
     <!-- My shit -->
     <!-- <script defer type="module" src="scripts/mainBLEGeneric.js"></script> -->
     <script defer src="script.js"></script>
+    <script defer src="test.js"></script>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Archivo">
     <title>Braille to SVG</title>
@@ -28,18 +29,17 @@
                 <!-- Card -->
                 <div class="bg-dark text-white p-5 rounded mb-4 text-center">
                     <h1 class="display-1">Braille to SVG</h1><br />
-                    <p class="lead">I was having some issues with Fusion 360 where it wouldn't accept braille characters
-                        into my sketch. That's why I'll make a tool that converts braille unicode characters into SVG
-                        shapes that can be used in Fusion 360 or anywhere else. (If i succeed)</p>
+                    <p class="lead">Enter text to translate to Braille. You get unicode characters as well as a SVG
+                        representation that you can download. Hint: Put # before a series of numbers so the translation
+                        will have the ⠼ character which means a number char is next.</p>
 
                     <form>
                         <div class="mb-3">
-                            <label class="col-form-label" for="iptBraille">Input text: </label>
+                            <label class="col-form-label" for="iptTekst">Input text: </label>
                             <input type="text" id="iptTekst" value="LP-E17" class="form-control">
-                            <br>
-                            <button type="button" id="btnConvert" class="btn btn-primary">Convert</button>
-                            <br><br>
+                            <label class="col-form-label" for="iptBraille">Braille: </label>
                             <input disabled type="text" id="iptBraille" value="" class="form-control">
+                            <label class="col-form-label">SVG: </label>
                         </div>
 
                         <svg id="svgBraille" xmlns="http://www.w3.org/2000/svg"

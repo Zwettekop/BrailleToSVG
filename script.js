@@ -1,45 +1,136 @@
-console.log("test");
-
 let btn = document.getElementById("btnConvert");
 let iptVeld = document.getElementById("iptTekst");
 let iptOutput = document.getElementById("iptBraille");
 let svg = document.getElementById("svgBraille");
 //⠇⠏⠤⠑⠂⠶
 textToShape = {
-    "E": "15",
-    "L": "123",
-    "P": "1234",
-    "-": "36",
-    "1": "2",
-    "7": "2356",
+    " ": " ",
+    "a": "1",
+    "b": "12",
+    "c": "14",
+    "d": "145",
+    "e": "15",
+    "f": "124",
+    "g": "1245",
+    "h": "125",
+    "i": "24",
+    "j": "245",
+    "k": "13",
+    "l": "123",
+    "m": "134",
+    "n": "1345",
+    "o": "135",
+    "p": "1234",
+    "q": "12345",
+    "r": "1235",
+    "s": "234",
+    "t": "2345",
+    "u": "136",
+    "v": "1236",
+    "w": "2456",
+    "x": "1346",
+    "y": "13456",
+    "z": "1356",
+    "#": "3456",
+    "1": "1",
+    "2": "12",
+    "3": "14",
+    "4": "145",
+    "5": "15",
+    "6": "124",
+    "7": "1245",
+    "8": "125",
+    "9": "24",
+    "0": "245",
+    ",": "2",
+    ":": "25",
+    ".": "256",
+    "?": "236",
+    "!": "235",
+    "(": "5 126",
+    ")": "5 345",
+    "/": "456 34",
+    "": "456 16",
+    "-": "36"
 }
 
 textToBraille = {
-    "E": "⠑",
-    "L": "⠇",
-    "P": "⠏",
-    "-": "⠤",
-    "1": "⠂",
-    "7": "⠶",
+    " ": " ",
+    "a": "⠁",
+    "b": "⠃",
+    "c": "⠉",
+    "d": "⠙",
+    "e": "⠑",
+    "f": "⠋",
+    "g": "⠛",
+    "h": "⠓",
+    "i": "⠊",
+    "j": "⠚",
+    "k": "⠅",
+    "l": "⠇",
+    "m": "⠍",
+    "n": "⠝",
+    "o": "⠕",
+    "p": "⠏",
+    "q": "⠟",
+    "r": "⠗",
+    "s": "⠎",
+    "t": "⠞",
+    "u": "⠥",
+    "v": "⠧",
+    "w": "⠺",
+    "x": "⠭",
+    "y": "⠽",
+    "z": "⠵",
+    "#": "⠼",
+    "1": "⠁",
+    "2": "⠃",
+    "3": "⠉",
+    "4": "⠙",
+    "5": "⠑",
+    "6": "⠋",
+    "7": "⠛",
+    "8": "⠓",
+    "9": "⠊",
+    "0": "⠚",
+    ",": "⠂",
+    ":": "⠒",
+    ".": "⠲",
+    "?": "⠦",
+    "!": "⠖",
+    "(": "⠐⠣",
+    ")": "⠐⠜",
+    "/": "⠸⠌",
+    "": "⠸⠡",
+    "-": "⠤"
 }
 
-btn.onclick = () => {
-    let invoer = iptVeld.value;
-    console.log(iptVeld.value);
+iptVeld.onchange = cleanInput;
+iptVeld.onkeyup = cleanInput;
+iptVeld.onclick = cleanInput;
+iptVeld.onpaste = cleanInput;
+
+function cleanInput() {
+    let invoer = iptVeld.value.toLowerCase();
     let res = "";
     for (let c of invoer) {
-        upper = c.toUpperCase();
-        // if(textToShape)
-        res += textToBraille[upper];
-        //console.log(textToShape[c]);
+        if (textToBraille.hasOwnProperty(c))
+            res += c;
     }
-    iptOutput.value = res;
-    console.log(iptOutput.value);
+    console.log(res);
+    generateBrailleTekst(res);
     generateSvg(iptVeld.value);
 }
 
-function generateSvg(invoer) {
+function generateBrailleTekst(invoer) {
     let res = "";
+    for (let c of invoer)
+        res += textToBraille[c];
+    iptOutput.value = res;
+}
+
+function generateSvg(invoer) {
+    svg.innerHTML = "";
 
     let x = 50;
     let y = 50;
@@ -48,13 +139,12 @@ function generateSvg(invoer) {
     let dotSize = 10;
 
     for (let c of invoer) {
-        upper = c.toUpperCase();
-        // if(textToShape)
-        //res += textToBraille[upper];
+        //console.log(`${c} => ${textToShape[c]}`);
         let shape = textToShape[c];
-
         //Draw character
         for (let dot of shape) {
+            if (c === " ")
+                break;
             dot = parseInt(dot);
             let circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
             circle.setAttribute("fill", "black");
@@ -64,24 +154,14 @@ function generateSvg(invoer) {
             circle.setAttribute("cy", y + cy);
             circle.setAttribute("r", dotSize);
             svg.appendChild(circle);
-
-
-            console.log(`${dot * 1} cx: ${cx}, cy: ${cy}`);
-
         }
-        console.log("")
-        //
 
         x += letterSpacing;
     }
-
-    //iptOutput.value = res;
-    console.log("done");
 }
 
 //Download button
 document.getElementById("btnDownload").onclick = () => {
-    console.log(svg);
     const blob = new Blob([svg.outerHTML.toString()]);
     const element = document.createElement("a");
     element.download = "braille.svg";
@@ -89,7 +169,3 @@ document.getElementById("btnDownload").onclick = () => {
     element.click();
     element.remove();
 }
-
-
-fetch("braille.svg")
-    .then((msg) => { console.log(msg); }); 
