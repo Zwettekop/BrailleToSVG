@@ -105,6 +105,7 @@ textToBraille = {
     "-": "⠤"
 }
 
+cleanInput();
 iptVeld.onchange = cleanInput;
 iptVeld.onkeyup = cleanInput;
 iptVeld.onclick = cleanInput;
@@ -119,7 +120,7 @@ function cleanInput() {
     }
     console.log(res);
     generateBrailleTekst(res);
-    generateSvg(iptVeld.value);
+    generateSvg(res);
 }
 
 function generateBrailleTekst(invoer) {
