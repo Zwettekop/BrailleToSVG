@@ -27,43 +27,87 @@
             <div class="col-lg-6">
 
                 <!-- Card -->
-                <div class="bg-dark text-white p-5 rounded mb-4 text-center">
+                <div class="bg-dark text-white p-5 rounded mb-4">
+
                     <h1 class="display-1">Braille to SVG</h1><br />
-                    <p class="lead">Enter text in the input field to translate it to Braille and get a SVG
-                        representation. You can also opt to enter Braille directly if you already have a translation.
-                        Hint: Put # before a series of numbers so the translation
-                        will have the ⠼ character which means a number char is next.</p>
+                    <p class="lead">Enter text to translate it to Braille and get a SVG
+                        representation. You can also opt to enter Braille directly if you already have a
+                        (better) translation. Press the download button to get a SVG representation. If the text is too
+                        big
+                        it won't show up on the screen but it will still be in the
+                        downloaded SVG.
+                    </p>
+                    Made by Zwettekop
+
+                </div>
+                <div class="bg-dark text-white p-5 rounded mb-4">
 
                     <form>
                         <div class="mb-3">
-                            <label class="col-form-label" for="iptTekst">Input text: </label>
-                            <input type="text" id="iptTekst" value="test" class="form-control">
-                            <label class="col-form-label" for="iptBraille">Braille: </label>
-                            <input type="text" id="iptBraille" value="" class="form-control">
-                            <label class="col-form-label">SVG: </label>
+                            <label for="iptTekst" class="form-label">Input text: </label>
+                            <textarea id="iptTekst" class="form-control" rows="1">test</textarea>
                         </div>
-
+                        <div class="mb-3">
+                            <label for="iptBraille" class="form-label">Braille: </label>
+                            <textarea id="iptBraille" class="form-control" rows="1"></textarea>
+                        </div>
+                    </form>
+                    <label class="form-label">SVG: </label>
+                    <!-- style="border: 1px solid white; border-radius: 1em;" -->
+                    <div class="mb-3">
                         <svg id="svgBraille" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%">
                         </svg>
+                    </div>
 
-                        <!-- <svg fill="#000000" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"
-                            viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve" width="100%"
-                            height="100%">
-                            <path
-                                d="M93.6,53.6c0-2.8-2.3-5-5.1-5H74.4c-2.8,0-5.1,2.2-5.1,5c-0.1,0.9-0.7,9.9-0.7,15.4c0,1.1,0.9,2,2,2s2-0.9,2-2  c0-5.6,0.7-15.1,0.7-15.2c0,0,0-0.1,0-0.1c0-0.4,0.3-0.8,0.7-1l1.1,18.2v21.6c0,1.1,0.9,2,2,2s2-0.9,2-2V72.8h4.1v19.7  c0,1.1,0.9,2,2,2s2-0.9,2-2V70.9l1.7-18.2c0.4,0.1,0.7,0.5,0.7,1c0,0,0,0.1,0,0.1c0,0.1,0.7,9.6,0.7,15.2c0,1.1,0.9,2,2,2s2-0.9,2-2  C94.3,63.5,93.7,54.5,93.6,53.6z M79,68.8l-1-16.2h6.9l-1.5,16.2H79z M81,45.1c3.7,0,7.6-2.4,7.6-9.2c0-4.3-4.3-6.6-8.6-6.6  c-3.9,0-6.6,3.1-6.6,7.6C73.4,41.3,77,45.1,81,45.1z M80,33.3c1.9,0,4.6,0.8,4.6,2.6c0,3.5-1.2,5.2-3.6,5.2c-1.9,0-3.6-2-3.6-4.2  C77.4,35.6,77.7,33.3,80,33.3z M62.1,62.9c-2.6-0.8-4-6.8-4.2-9.6c-0.1-2.8-2.3-5-5.1-5H38.7c-2.8,0-5.1,2.2-5.1,5  c-0.1,0.9-0.7,9.9-0.7,15.4c0,1.1,0.9,2,2,2s2-0.9,2-2c0-5.6,0.7-15.1,0.7-15.2c0,0,0-0.1,0-0.1c0-0.4,0.3-0.8,0.7-1l1,18.1v21.7  c0,1.1,0.9,2,2,2s2-0.9,2-2V72.4h4.1v19.8c0,1.1,0.9,2,2,2s2-0.9,2-2V70.5l1-18.2h0.4c0.5,0,1.1,0.4,1.1,1.1c0,0.1,0,0.1,0,0.2  c0.1,1.2,1.1,11.3,7,13.1c1,0.3,2.2-0.3,2.5-1.3C63.7,64.3,63.2,63.2,62.1,62.9z M47.5,68.4h-4.3l-0.9-16.1h6.1L47.5,68.4z   M47.3,44.8c4,0,7.6-3.8,7.6-8.2c0-4.5-2.7-7.6-6.6-7.6c-4.3,0-8.6,2.3-8.6,6.6C39.7,43.9,45,44.8,47.3,44.8z M48.3,33  c2.3,0,2.6,2.3,2.6,3.6c0,2.2-1.8,4.2-3.6,4.2c-1.2,0-3.6,0-3.6-5.2C43.7,33.8,46.4,33,48.3,33z M37.8,24.8c0.1-0.3,0.2-0.6,0.2-0.9  V10.6c0-2.2-1.7-3.9-3.9-3.9H13.3c-2.2,0-3.9,1.7-3.9,3.9v13.3c0,2.2,1.7,3.9,3.9,3.9h8.8l7.2,7.4c0.4,0.4,0.9,0.6,1.4,0.6  c0.3,0,0.5,0,0.8-0.1c0.8-0.3,1.2-1,1.2-1.9v-6H34C35.9,27.8,37.4,26.5,37.8,24.8z M30.7,23.8c-1.1,0-2,0.9-2,2v3.1l-4.4-4.5  c-0.4-0.4-0.9-0.6-1.4-0.6h-9.5V10.7H34v12.6c-0.1,0.2-0.1,0.3-0.1,0.5H30.7z" />
-                        </svg> -->
-                    </form>
+
                     <form>
                         <button type="button" id="btnDownload" class="btn btn-primary">Download SVG</button>
                     </form>
+                    <br>
+                    <div class="font-weight-light text-secondary">
+                        Hints / Best practices:
+                        <br>
+                        <ul>
+                            <li># gets translated to ⠼ in Braille. You should use this character in front of a
+                                series of digits.</li>
+                            <li>if numbers are immediately followed by text you should put the X character. This
+                                gets translated to Y</li>
+                        </ul>
+                    </div>
+
+
                 </div>
 
-            </div>
-            <div class="col-lg-3">
 
+                <div class="bg-dark text-white p-5 rounded mb-4">
+                    <p>Extra information</p>
+
+                    <ul>
+                        <li>
+                            Git repository is available at: <a href="https://github.com/Zwettekop/BrailleToSVG">
+                                github.com/Zwettekop/BrailleToSVG/
+                            </a>
+                        </li>
+                        <li>
+                            BTC link for donations: 3428yEHfsWztHoBRvrkANsmxrof4aYu7Vc
+                        </li>
+                        <li>
+                            Resource for learning about Braille:
+                            <a href="https://www.pharmabraille.com/pharmaceutical-braille/the-braille-alphabet/">PharmaBraille
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
+        </div>
+
+
+        </div>
+        <div class="col-lg-3">
+
+        </div>
         </div>
 
     </main>
