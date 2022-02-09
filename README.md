@@ -1,2 +1,8 @@
 # BrailleToSVG
-I was having some issues with Fusion 360 where it wouldn't accept braille characters into my sketch. That's why I'll make a tool that converts braille unicode characters into SVG shapes that can be used in Fusion 360 or anywhere else. (If i succeed)
+
+Convert text to braille and get an SVG representation. You can also enter Braille characters directly if you already have a (better) translation.
+
+#TODO
+- add comment about letter character to hints
+- make sure characters that take up multiple lines work OK
+- Post work somewhere. Showcase workflow from this page, to fusion, to print
